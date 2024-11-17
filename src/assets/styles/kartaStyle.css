@@ -1,0 +1,15 @@
+.karta {
+  background-color: rgba(123, 138, 98, 0.5254901961);
+  opacity: 52%;
+  height: 200px;
+  width: 280px;
+  border-radius: 15px;
+  align-content: center;
+  text-decoration: none;
+}
+.karta .nazov {
+  font-size: x-large;
+}
+.karta .cena {
+  font-size: xx-large;
+}/*# sourceMappingURL=kartaStyle.css.map */

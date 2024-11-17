@@ -1,0 +1,23 @@
+.bannerBox{
+    display: flex;
+    background-color: #7B8A62;
+    color: #F6EAC0;
+    font-size: xx-large;
+    padding: 1vw;
+    margin: 0.30vw;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    .lavyList{
+        margin: 0.25vw;
+        align-content: center;
+    }
+    .pravyList{
+        margin: 0.25vw;
+        justify-content: right;
+        align-content: center;
+    }
+    .nazov{
+        position: relative;
+        align-content: center;
+    }
+}

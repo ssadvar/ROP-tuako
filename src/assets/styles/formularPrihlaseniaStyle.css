@@ -1,0 +1,50 @@
+.formularPrihlasenia {
+  background-color: rgba(123, 138, 98, 0.6588235294);
+  height: 500px;
+  width: 800px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  border-radius: 30px;
+  gap: 30px;
+  position: relative;
+}
+.formularPrihlasenia .loginIkona {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.formularPrihlasenia .buttonPrihlasenia {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.formularPrihlasenia .linkRegistracia {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.formularPrihlasenia input {
+  background-color: #7B8A62;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 30vw;
+  border-radius: 5000px;
+  color: #F6EAC0;
+  height: 30px;
+  width: 500px;
+}
+.formularPrihlasenia input:focus {
+  outline: none;
+  border: none;
+}
+.formularPrihlasenia input::-moz-placeholder {
+  color: rgba(246, 234, 192, 0.7019607843);
+  opacity: 0.7;
+}
+.formularPrihlasenia input::placeholder {
+  color: rgba(246, 234, 192, 0.7019607843);
+  opacity: 0.7;
+}/*# sourceMappingURL=formularPrihlaseniaStyle.css.map */

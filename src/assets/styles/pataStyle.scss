@@ -1,0 +1,20 @@
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    //justify-content: space-between ;
+    //align-items: center;
+    color: #7B8A62;
+    //color: #F6EAC0;
+    .tuakoPata{
+        display: grid;
+        justify-content: center;
+    }
+    .info{
+        display: grid;
+        justify-content: end ; 
+    }
+    
+}
+
+
+

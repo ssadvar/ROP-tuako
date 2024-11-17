@@ -1,0 +1,16 @@
+.button{
+    background-color: #7B8A62;
+    color: #F6EAC0;
+    border: none;
+    height: 2.2rem;
+    width: 9rem;
+    border-radius: 5000px;
+    justify-content: center;
+    position: relative;
+
+    button:focus{
+        outline: none;
+        border: none;
+    }
+    
+}

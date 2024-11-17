@@ -1,0 +1,30 @@
+.myinput {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  border: none;
+  background-color: #7B8A62;
+  border-radius: 5000px;
+  padding: 5px 20px 5px 5px;
+}
+.myinput input {
+  background-color: #7B8A62;
+  border: none;
+  display: flex;
+  justify-content: center;
+  width: 30vw;
+  color: #F6EAC0;
+}
+.myinput input:focus {
+  outline: none;
+  border: none;
+}
+.myinput input::-moz-placeholder {
+  color: #F6EAC0;
+  opacity: 0.7;
+}
+.myinput input::placeholder {
+  color: #F6EAC0;
+  opacity: 0.7;
+}/*# sourceMappingURL=myInputStyle.css.map */

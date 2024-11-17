@@ -1,0 +1,23 @@
+.bannerBox {
+  display: flex;
+  background-color: #7B8A62;
+  color: #F6EAC0;
+  font-size: xx-large;
+  padding: 1vw;
+  margin: 0.3vw;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.bannerBox .lavyList {
+  margin: 0.25vw;
+  align-content: center;
+}
+.bannerBox .pravyList {
+  margin: 0.25vw;
+  justify-content: right;
+  align-content: center;
+}
+.bannerBox .nazov {
+  position: relative;
+  align-content: center;
+}/*# sourceMappingURL=bannerStyle.css.map */

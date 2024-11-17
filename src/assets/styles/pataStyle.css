@@ -1,0 +1,13 @@
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: #7B8A62;
+}
+footer .tuakoPata {
+  display: grid;
+  justify-content: center;
+}
+footer .info {
+  display: grid;
+  justify-content: end;
+}/*# sourceMappingURL=pataStyle.css.map */
