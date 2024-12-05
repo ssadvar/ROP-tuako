@@ -6,8 +6,8 @@ export const appwriteConfig = {
     platform: 'tuako',
     databaseId: '674356a400149add9810',
     
-    uzivatelia: '67435f990002b1bedd5e',
-    ponuky: '674d6ca4002aea3bd5dd',
+    uzivateliaCollectionId: '67435f990002b1bedd5e',
+    ponukyCollectionId: '674d6ca4002aea3bd5dd',
 
 
 }

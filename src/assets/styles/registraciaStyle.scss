@@ -10,7 +10,7 @@
     position: relative;
 
     .clipboardIkona{
-        position: absolute;
+        //position: absolute;
         top: 30px;
         left: 30px;
     }
@@ -19,6 +19,7 @@
         display: grid;
         justify-content: center;
         align-content: center ;
+        //background: red;
     }
 
     .linkPrihlasenia{

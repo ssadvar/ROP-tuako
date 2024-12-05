@@ -8,7 +8,7 @@ import Karta from "@/components/Karta.jsx"
 
 import "@/assets/styles/domovStyle.css"
 import "@/assets/styles/palmicka.css"
-import FormularPridajPonuku from "@/components/PridajPonuku";
+import FormularPridajPonuku from "@/components/FormularPridajPonuku";
 import Pata from "@/components/Pata";
 
 export default function Home() {

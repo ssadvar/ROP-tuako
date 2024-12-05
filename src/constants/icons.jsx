@@ -20,6 +20,7 @@ import mapPin from "@/assets/icons/mapPin.png"
 import mapPinYellow from "@/assets/icons/mapPinYellow.png"
 import info from "@/assets/icons/info.png"
 import edit from "@/assets/icons/edit.png"
+import pencil from "@/assets/icons/pencil.png"
 
 export default {
     login,
@@ -43,6 +44,7 @@ export default {
     mapPin,
     mapPinYellow,
     info,
-    edit
+    edit,
+    pencil
     
 }
