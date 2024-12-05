@@ -15,7 +15,11 @@ import clipboard from "@/assets/icons/clipboard.png"
 import eyeOn from "@/assets/icons/eyeOn.png"
 import phone from "@/assets/icons/phone.png"
 import registrationButton from "@/assets/icons/registrationButton.png"
-
+import plusCircle from "@/assets/icons/plusCircle.png"
+import mapPin from "@/assets/icons/mapPin.png"
+import mapPinYellow from "@/assets/icons/mapPinYellow.png"
+import info from "@/assets/icons/info.png"
+import edit from "@/assets/icons/edit.png"
 
 export default {
     login,
@@ -35,5 +39,10 @@ export default {
     eyeOn,
     phone,
     registrationButton,
+    plusCircle,
+    mapPin,
+    mapPinYellow,
+    info,
+    edit
     
 }
