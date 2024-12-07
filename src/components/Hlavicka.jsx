@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 import Prihlasenie from "./Prihlasenie.jsx"
 import Vyhladavanie from "./Vyhladavanie.jsx"
 import HomePalmicka from "./HomePalmicka.jsx"

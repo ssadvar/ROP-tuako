@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 import Image from "next/image"
 import icons from "./../constants/icons.jsx"
 import "@/assets/styles/bannerStyle.css"

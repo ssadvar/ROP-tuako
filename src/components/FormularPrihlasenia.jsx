@@ -1,5 +1,5 @@
 "use client"
-import react from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import icons from "@/constants/icons";
 import Link from "next/link.js";
@@ -8,6 +8,27 @@ import "@/assets/styles/formularPrihlaseniaStyle.css"
 import MyButton from "./MyButton.jsx";
 
 export default function FormularPrihlasenia(){
+    const [email, setEmail] = useState('');     //nastavenie stavu email na prazdny string
+    const [heslo, setHeslo] = useState('');      //nastavenie stavu hesla na prazdny string
+    const [jePlatnyEmail, setJePlatnyEmail] = useState(true);     // stav na sledovanie platnosti emailu - nastavim stav na true
+    const overEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //regularny vyraz - overenie standardneho formatu emailov
+
+    const handleLogin = () => {             // Vypise obsah inputov do konzoly
+        if (!overEmail.test(email)) {
+            setJePlatnyEmail(false);
+            console.log("Zadaný email nie je platný.");
+        } else {
+            setJePlatnyEmail(true);
+            console.log("Email je platný.");
+
+            console.log('email:', email);       //vypis do konzoly 
+            console.log('heslo:', heslo);
+
+            setEmail('');       //Vyprazdni input -> nastavi stav inputu na ''
+            setHeslo('');
+        }
+    };
+
     return(
         <div className="formularPrihlasenia">
             <div className="loginIkona">
@@ -22,12 +43,18 @@ export default function FormularPrihlasenia(){
                 <MyInput 
                     ikona={icons.user}
                     nazovIkony={"email"}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}        // Ukladá hodnotu inputu do stavu
                 />
+               {!jePlatnyEmail && <p style={{ color: "red" }}>Zadaný email nie je platný.</p>} 
             </div>
             <div>
                 <MyInput 
+                    type="password"
                     ikona={icons.lock}
                     nazovIkony={"heslo"}
+                    value={heslo}
+                    onChange={(e) => setHeslo(e.target.value)}       // Ukladá hodnotu inputu do stavu
                 />
 
                 <Image
@@ -40,7 +67,7 @@ export default function FormularPrihlasenia(){
             <div className="buttonPrihlasenia">
                 <MyButton
                     nazov={"Prihlásiť sa"}
-                    uloha={() => {}}
+                    uloha={() => handleLogin()} 
                 />
             </div>
             <div className="linkRegistracia">  

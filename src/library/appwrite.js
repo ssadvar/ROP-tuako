@@ -8,8 +8,6 @@ export const appwriteConfig = {
     
     uzivateliaCollectionId: '67435f990002b1bedd5e',
     ponukyCollectionId: '674d6ca4002aea3bd5dd',
-
-
 }
 
 const client = new Client();
@@ -19,6 +17,38 @@ client
 
 const account = new Account(client);
 const databases = new Databases(client);
+export { account };
 
-account.create()
+export const vytvorenieUzivatela = async (meno, email, heslo, tel_cislo, priezvisko) => {
+    try {
+        const novyUcet = await account.create(
+            ID.unique(),
+            email,
+            heslo,
+            meno,
+            console.log('mail:', email)
+        )
+
+        if(!novyUcet) throw Error;
+
+        const novyUzivatel = await databases.createDocument(
+            appwriteConfig.databaseId, 
+            appwriteConfig.uzivateliaCollectionId,
+            ID.unique(),
+            {
+                meno,
+                authId: novyUcet.$id,
+                email,
+                heslo,
+                tel_cislo,
+                priezvisko                
+            }
+        )
+
+        return novyUzivatel
+    } catch (error) {
+        console.log("Chyba vytvorenia nového užívateľa: " + error)
+        throw new Error(error)
+    }    
+}
 

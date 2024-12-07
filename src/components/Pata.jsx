@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 import "@/assets/styles/pataStyle.css"
 
 export default function Pata(){

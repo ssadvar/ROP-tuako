@@ -1,8 +1,8 @@
-import react from "react";
+import React from "react";
 import Image from "next/image";
 import "@/assets/styles/myInputStyle.css"
 
-export default function MyInput({ikona, nazovIkony}){
+export default function MyInput({ikona, nazovIkony, type = "text", value, onChange}){
     return(
         <>
             <div className="myinput">
@@ -12,7 +12,12 @@ export default function MyInput({ikona, nazovIkony}){
                     width="28"
                     alt={ikona}
                 />
-                <input placeholder={nazovIkony}/>
+                <input 
+                    type={type}
+                    value={value}
+                    onChange={onChange}
+                    placeholder={nazovIkony}
+                />
             </div>
         </>
     )
