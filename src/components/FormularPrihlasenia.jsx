@@ -6,20 +6,25 @@ import Link from "next/link.js";
 import MyInput from "./MyInput.jsx";
 import "@/assets/styles/formularPrihlaseniaStyle.css"
 import MyButton from "./MyButton.jsx";
+import { useRouter } from 'next/navigation'
+import { prihlasitSa, odhlasitSa } from "@/library/appwrite.js";
 
 export default function FormularPrihlasenia(){
     const [email, setEmail] = useState('');     //nastavenie stavu email na prazdny string
     const [heslo, setHeslo] = useState('');      //nastavenie stavu hesla na prazdny string
     const [jePlatnyEmail, setJePlatnyEmail] = useState(true);     // stav na sledovanie platnosti emailu - nastavim stav na true
     const overEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //regularny vyraz - overenie standardneho formatu emailov
+    const router = useRouter()
 
-    const handleLogin = () => {             // Vypise obsah inputov do konzoly
+    const handleLogin = async () => {             // Vypise obsah inputov do konzoly
         if (!overEmail.test(email)) {
             setJePlatnyEmail(false);
             console.log("Zadaný email nie je platný.");
         } else {
             setJePlatnyEmail(true);
             console.log("Email je platný.");
+            await prihlasitSa(email, heslo)
+            //presmerovanie po prihlaseni na hlavnu stranku
 
             console.log('email:', email);       //vypis do konzoly 
             console.log('heslo:', heslo);
@@ -27,7 +32,7 @@ export default function FormularPrihlasenia(){
             setEmail('');       //Vyprazdni input -> nastavi stav inputu na ''
             setHeslo('');
         }
-    };
+    }
 
     return(
         <div className="formularPrihlasenia">
@@ -68,6 +73,10 @@ export default function FormularPrihlasenia(){
                 <MyButton
                     nazov={"Prihlásiť sa"}
                     uloha={() => handleLogin()} 
+                />
+                 <MyButton 
+                    nazov={"Odhlasit sa"}
+                    uloha={() => odhlasitSa()} 
                 />
             </div>
             <div className="linkRegistracia">  

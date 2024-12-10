@@ -6,7 +6,8 @@ import Link from "next/link.js";
 import MyInput from "./MyInput.jsx"
 import "@/assets/styles/registraciaStyle.css"
 import MyButton from "./MyButton.jsx";
-import { vytvorenieUzivatela } from "@/library/appwrite.js"
+import { prihlasitSa, vytvorenieUzivatela } from "@/library/appwrite.js"
+import { useRouter } from 'next/navigation'
 
 export default function Registracia(){            
         const [meno, setMeno] = useState('')
@@ -16,23 +17,28 @@ export default function Registracia(){
         const [heslo, setHeslo] = useState('')
         const [modal, setModal] = useState(false);
         const [modalText, setModalText] = useState('');
-        //const {setUzivatel, setPrihlaseny} = useGlobalContext()
+        const router = useRouter()
+        const [jePlatnyEmail, setJePlatnyEmail] = useState(true);     // stav na sledovanie platnosti emailu - nastavim stav na true
       
-        const registracia = async () => {                   // -> metoda trim odsranuje medzery zo zaciatku a konca vstupov, neovplyvnuje vsak medzery v strede
+        const registracia = async () => {           //metoda trim -> odsranuje medzery zo zaciatku a konca vstupov, neovplyvnuje vsak medzery v strede
             if(meno.trim() && priezvisko.trim() && email.trim() && tel_cislo.trim() && tel_cislo.length <= 12 && heslo.trim() && heslo.length >= 8){
                 try {
-                    const result = await vytvorenieUzivatela(meno, email, heslo, tel_cislo, priezvisko)
-                    setUzivatel(result)
-                    setPrihlaseny(true)
+                    await vytvorenieUzivatela(meno, email, heslo, tel_cislo, priezvisko)
+                    const overEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //regularny vyraz - overenie standardneho formatu emailov
 
-                    console.log("meno:", meno, "priezvisko:", priezvisko, "email:", email, "tel_cislo:", tel_cislo, "heslo:", heslo);
-
-                    //const userSettings = await getUserSettings(result.$id)
-  
-                    router.replace('/personalInfo')
-                } catch (error) {
-                    alert(error)
-                    setModal(true);         //vypisy chyb
+                    if (!overEmail.test(email)) {
+                        setJePlatnyEmail(false);
+                        console.log("Zadaný email nie je platný.");
+                    } else {
+                        setJePlatnyEmail(true);
+                        console.log("Email je platný.");
+                        router.push('/')  //presmerovanie po registracii na hlavnu stranku
+                        console.log("meno:", meno, "priezvisko:", priezvisko, "email:", email, "tel_cislo:", tel_cislo, "heslo:", heslo);
+                    }
+                    
+                } catch (error) {       //vypisy chyb
+                    alert("Chyba pri registrácii: " + error)
+                    setModal(true);        
                     setModalText('Chyba pri registrácii: ' + error.message);
                 }
             }else{
@@ -44,16 +50,9 @@ export default function Registracia(){
                     setModalText('Heslo musí mať aspoň 8 znakov')
                 }else if (tel_cislo.length > 12) {
                     setModal(true);
-                    setModalText('Telefónne číslo nesmie ma5 viac ako 12 číslic')
+                    setModalText('Telefónne číslo nesmie mať viac ako 12 číslic')
                 }
             }
-{/*
-            setEmail('')
-            setHeslo('')
-            setMeno('')
-            setPriezvisko('')
-            setTel_cislo('')*/}
-
         }    
 
     return(

@@ -1,5 +1,5 @@
-import { React, useEffect } from "react";
-
+"use client"
+import { React} from "react";
 import "@/assets/styles/MyButtonStyle.css"
 
 export default function MyButton({nazov, uloha}){
