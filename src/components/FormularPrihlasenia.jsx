@@ -29,6 +29,8 @@ export default function FormularPrihlasenia(){
             console.log('email:', email);       //vypis do konzoly 
             console.log('heslo:', heslo);
 
+            router.push('/')
+
             setEmail('');       //Vyprazdni input -> nastavi stav inputu na ''
             setHeslo('');
         }
@@ -49,6 +51,18 @@ export default function FormularPrihlasenia(){
                     ikona={icons.user}
                     nazovIkony={"email"}
                     value={email}
+                    onKeyPress={(event) => {
+                        if(event.key == 'enter'){
+                            const nextfield = document.querySelector(
+                                `input[name=field-${fieldIntIndex + 1}]`
+                            );
+             
+                            // If found, focus the next field
+                            if (nextfield !== null) {
+                                nextfield.focus();
+                            }
+                        }
+                    }}
                     onChange={(e) => setEmail(e.target.value)}        // Ukladá hodnotu inputu do stavu
                 />
                {!jePlatnyEmail && <p style={{ color: "red" }}>Zadaný email nie je platný.</p>} 
@@ -59,6 +73,11 @@ export default function FormularPrihlasenia(){
                     ikona={icons.lock}
                     nazovIkony={"heslo"}
                     value={heslo}
+                    onKeyPress={(event) => {
+                        if(event.key == 'enter'){
+                            handleLogin()
+                        }
+                    }}
                     onChange={(e) => setHeslo(e.target.value)}       // Ukladá hodnotu inputu do stavu
                 />
 
@@ -76,7 +95,10 @@ export default function FormularPrihlasenia(){
                 />
                  <MyButton 
                     nazov={"Odhlasit sa"}
-                    uloha={() => odhlasitSa()} 
+                    uloha={() => {
+                        odhlasitSa();
+                        router.push('/')
+                    }} 
                 />
             </div>
             <div className="linkRegistracia">  

@@ -1,4 +1,4 @@
-.formularRegistracie {
+.formularPonuk {
   background-color: rgba(123, 138, 98, 0.6588235294);
   height: 500px;
   width: 800px;
@@ -9,22 +9,17 @@
   gap: 5px;
   position: relative;
 }
-.formularRegistracie .clipboardIkona {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-}
-.formularRegistracie .buttonRegistracia {
+.formularPonuk .buttonRegistracia {
   display: grid;
   justify-content: center;
   align-content: center;
 }
-.formularRegistracie .linkPrihlasenia {
+.formularPonuk .linkPrihlasenia {
   display: grid;
   justify-content: center;
   align-content: center;
 }
-.formularRegistracie input {
+.formularPonuk input {
   background-color: #7B8A62;
   border: none;
   display: flex;
@@ -36,15 +31,15 @@
   height: 30px;
   width: 500px;
 }
-.formularRegistracie input:focus {
+.formularPonuk input:focus {
   outline: none;
   border: none;
 }
-.formularRegistracie input::-moz-placeholder {
+.formularPonuk input::-moz-placeholder {
   color: rgba(246, 234, 192, 0.7019607843);
   opacity: 0.7;
 }
-.formularRegistracie input::placeholder {
+.formularPonuk input::placeholder {
   color: rgba(246, 234, 192, 0.7019607843);
   opacity: 0.7;
-}/*# sourceMappingURL=registraciaStyle.css.map */
+}/*# sourceMappingURL=pridavaniaPonukStyle.css.map */

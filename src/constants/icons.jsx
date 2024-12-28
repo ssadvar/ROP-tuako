@@ -21,6 +21,8 @@ import mapPinYellow from "@/assets/icons/mapPinYellow.png"
 import info from "@/assets/icons/info.png"
 import edit from "@/assets/icons/edit.png"
 import pencil from "@/assets/icons/pencil.png"
+import spinka from "@/assets/icons/spinka.png"
+import moneyYellow from "@/assets/icons/moneyYellow.png"
 
 export default {
     login,
@@ -45,6 +47,8 @@ export default {
     mapPinYellow,
     info,
     edit,
-    pencil
+    pencil,
+    spinka,
+    moneyYellow,
     
 }

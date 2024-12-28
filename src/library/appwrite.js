@@ -11,6 +11,8 @@ export const appwriteConfig = {
     ponukyCollectionId: '674d6ca4002aea3bd5dd',
 }
 
+const {databaseId, uzivateliaCollectionId, ponukyCollectionId} = appwriteConfig 
+
 const client = new Client();
 client
     .setEndpoint(appwriteConfig.endpoint)
@@ -20,7 +22,7 @@ const account = new Account(client);
 const databases = new Databases(client);
 export { account };
 
-export const vytvorenieUzivatela = async (meno, email, heslo, tel_cislo, priezvisko) => {
+export async function vytvorenieUzivatela(meno, email, heslo, tel_cislo, priezvisko){
     try {
         const novyUcet = await account.create(
             ID.unique(),
@@ -42,7 +44,6 @@ export const vytvorenieUzivatela = async (meno, email, heslo, tel_cislo, priezvi
                 meno,
                 authId: novyUcet.$id,
                 email,
-                heslo,
                 tel_cislo,
                 priezvisko                
             }
@@ -51,20 +52,15 @@ export const vytvorenieUzivatela = async (meno, email, heslo, tel_cislo, priezvi
     } catch (error) {           //vypisy chyb
         console.log("Chyba vytvorenia nového užívateľa: " + error)
         alert("Chyba pri vytvarani noveho uzivatela: " + error)
-        setModal(true);         
-        setModalText('Chyba pri vytvarani noveho uzivatela: ' + error.message);
     }    
 }
 
 export async function prihlasitSa(email, password){
     try{
         const session = await account.createEmailPasswordSession(email, password)
-        router.push('/')
         return session
     }catch(error){                 //vypisy chyb
         alert("Chyba pri prihlaseni: " + error)
-        setModal(true);       
-        setModalText('Chyba pri prihlaseni: ' + error.message);
     }
 }
 
@@ -72,15 +68,61 @@ export async function odhlasitSa() {
     try {
         const session = await account.deleteSession('current')
         console.log('boli ste odhlaseny')
-        router.push('/')
         return session
     } catch (error) {
         alert("Chyba pri odhlaseni: " + error)
-        setModal(true);       
-        setModalText('Chyba pri odhlaseni: ' + error.message);
     }
 }
 
+export async function getPrihlasenyUzivatel(){
+    try{
+        const prihlasenyUcet = await account.get()
+        
+        if(!prihlasenyUcet) throw Error
+
+        const pouzivatel = await databases.listDocuments(
+            databaseId,
+            uzivateliaCollectionId,
+            [Query.equal('authId', prihlasenyUcet.$id)]     //podmienka
+        )
+        return pouzivatel.documents[0]
+    }catch(error){
+        console.log('chyba pri ziskavani prihlaseneho uzivatela: ', error)
+    }
+}
+
+
+export async function pridaniePonuky(nazov_ponuky, lokacia, cena, popis) {
+    try{
+        const novaPonuka = await databases.createDocument(
+            appwriteConfig.databaseId, 
+            appwriteConfig.ponukyCollectionId,
+            ID.unique(),
+            {
+                nazov_ponuky,
+                lokacia,
+                cena,
+                popis           
+            }
+        ) 
+        return novaPonuka
+    }catch(error){
+        console.log('chyba pri vytvarani ponuky - appwrite - : ', error)
+        alert("chyba:", error.message)
+    }   
+}
+
+export async function getPonuky(){
+    try{
+        const ponuky = await databases.listDocuments(
+            databaseId,
+            ponukyCollectionId,
+        )
+        return ponuky.documents
+    }catch(error){
+        console.log('chyba pri ziskavani ponuk: ', error)
+    }
+}
 
 
 

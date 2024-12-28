@@ -2,6 +2,7 @@
 import Pata from "@/components/Pata";
 import "./globals.css";
 import palmicka from "@/assets/icons/palmicka.png"
+import {GlobalProvider} from '@/contexts/globalnyStav.js'
 
 export const metadata = {
   title: "TUAKO ubytovanie",
@@ -13,8 +14,10 @@ export default function RootLayout({ children }) {
     <html lang="sk">
       <link rel="icon" href="/palmicka.png" sizes="any" />
       <body>
-        {children}
-        
+        <GlobalProvider>
+          {children}  
+        </GlobalProvider>
+
         <Pata/>
 
       </body>

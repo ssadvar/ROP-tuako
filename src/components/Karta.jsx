@@ -7,18 +7,16 @@ import Link from "next/link.js";
 import "@/assets/styles/kartaStyle.css"
 
 
-export default function Karta(){
+export default function Karta({ponuka}){
     const router = useRouter();
-
-    const id = "aaaaaaaaaaaaaaa"
 
     return(
         <Link 
             className="karta"
-            href={`/ubytovanie/${id}`}
+            href={`/ubytovanie/${ponuka.$id}`}
         >
-            <div className="nazov">nazov</div>
-            <div>miesto</div>
+            <div className="nazov">{ponuka.nazov_ponuky}</div>
+            <div>{ponuka.lokacia}</div>
             <div>
             <Image 
                 src={icons.fullStar}
@@ -52,7 +50,7 @@ export default function Karta(){
                 />
             </div>
             <div>1 noc</div>
-            <div className="cena">250$</div>
+            <div className="cena">{ponuka.cena}$</div>
         </Link>
     )
 }

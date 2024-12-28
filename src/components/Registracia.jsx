@@ -8,6 +8,7 @@ import "@/assets/styles/registraciaStyle.css"
 import MyButton from "./MyButton.jsx";
 import { prihlasitSa, vytvorenieUzivatela } from "@/library/appwrite.js"
 import { useRouter } from 'next/navigation'
+import { useGlobalnyStav } from "@/contexts/globalnyStav.js";
 
 export default function Registracia(){            
         const [meno, setMeno] = useState('')
@@ -19,24 +20,27 @@ export default function Registracia(){
         const [modalText, setModalText] = useState('');
         const router = useRouter()
         const [jePlatnyEmail, setJePlatnyEmail] = useState(true);     // stav na sledovanie platnosti emailu - nastavim stav na true
+
+        const {setPouzivatel} = useGlobalnyStav()
       
-        const registracia = async () => {           //metoda trim -> odsranuje medzery zo zaciatku a konca vstupov, neovplyvnuje vsak medzery v strede
+        async function registracia(){           //metoda trim -> odsranuje medzery zo zaciatku a konca vstupov, neovplyvnuje vsak medzery v strede
             if(meno.trim() && priezvisko.trim() && email.trim() && tel_cislo.trim() && tel_cislo.length <= 12 && heslo.trim() && heslo.length >= 8){
                 try {
-                    await vytvorenieUzivatela(meno, email, heslo, tel_cislo, priezvisko)
                     const overEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //regularny vyraz - overenie standardneho formatu emailov
-
+                    
                     if (!overEmail.test(email)) {
                         setJePlatnyEmail(false);
                         console.log("Zadaný email nie je platný.");
                     } else {
                         setJePlatnyEmail(true);
                         console.log("Email je platný.");
+                        const novy = await vytvorenieUzivatela(meno, email, heslo, tel_cislo, priezvisko)
+                        setPouzivatel(novy)
                         router.push('/')  //presmerovanie po registracii na hlavnu stranku
                         console.log("meno:", meno, "priezvisko:", priezvisko, "email:", email, "tel_cislo:", tel_cislo, "heslo:", heslo);
                     }
                     
-                } catch (error) {       //vypisy chyb
+                }catch(error){       //vypisy chyb
                     alert("Chyba pri registrácii: " + error)
                     setModal(true);        
                     setModalText('Chyba pri registrácii: ' + error.message);

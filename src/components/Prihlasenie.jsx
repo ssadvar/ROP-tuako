@@ -3,9 +3,13 @@ import React from "react"
 import Image from "next/image"
 import icons from "./../constants/icons.jsx"
 import Link from "next/link.js";
+import { useGlobalnyStav } from "@/contexts/globalnyStav.js";
 
 
 export default function Prihlasenie(){
+
+    const {pouzivatel} = useGlobalnyStav() 
+
     return(
         <Link 
             className="prihlasenie" 
@@ -17,7 +21,7 @@ export default function Prihlasenie(){
                 width="28"
                 alt="login"
             />
-            <span>Prihlásiť sa</span>
+            <span>{pouzivatel ? pouzivatel.meno : 'Prihlásiť sa'}</span>
         </Link>
     )
 }
